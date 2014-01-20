@@ -191,7 +191,12 @@ namespace Server
                 stream.Write(Convert.FromBase64String(EncryptRSA(sendKey, value[1], ascii)), 0, 128); // wyslanie klucza użytkownikowi
 
                 // zalogowanie użytkownika
-                if (connections.ContainsKey(value[0])) connections.Remove(value[0]);
+                if (connections.ContainsKey(value[0]))
+                {
+                    connections[value[0]].Close();
+                    connections.Remove(value[0]);
+                    Thread.Sleep(1000);
+                }
                 connections.Add(value[0], stream); // dodanie loginu
                 if (DESDict.ContainsKey(value[0])) DESDict.Remove(value[0]);
                 DESDict.Add(value[0], DESKey); // dodanie klucza sesji
