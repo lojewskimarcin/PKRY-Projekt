@@ -193,9 +193,9 @@ namespace Server
                 // zalogowanie użytkownika
                 if (connections.ContainsKey(value[0])) connections.Remove(value[0]);
                 connections.Add(value[0], stream); // dodanie loginu
-                if (DESDict.ContainsKey(value[0])) connections.Remove(value[0]);
+                if (DESDict.ContainsKey(value[0])) DESDict.Remove(value[0]);
                 DESDict.Add(value[0], DESKey); // dodanie klucza sesji
-                if (RSADict.ContainsKey(value[0])) connections.Remove(value[0]);
+                if (RSADict.ContainsKey(value[0])) RSADict.Remove(value[0]);
                 RSADict.Add(value[0], value[1]); // dodanie klucza publicznego
 
                 Console.ForegroundColor = ConsoleColor.Green;
